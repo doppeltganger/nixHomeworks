@@ -53,7 +53,7 @@ const randomEmployee = getRandomEmployee(employeeConstructArr)
 console.log(randomEmployee)
 
 //seventh task
-class Employee {
+class Emplyee {
   constructor() {
     Object.assign(this, employeeArr[0])
   }
@@ -72,5 +72,5 @@ class Employee {
     }
   }
 }
-const employeeObj = new Employee(employeeArr[0]);
-employeeObj.fullInfo = {name: 'Вася', salary: 9000, email: 'ex@mail.ua'}
+const emplyeeObj = new Emplyee (employeeArr[0]);
+emplyeeObj.fullInfo = {name: 'Вася', salary: 9000, email: 'ex@mail.ua'}
