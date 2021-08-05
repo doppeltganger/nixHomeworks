@@ -1,14 +1,5 @@
 const employeeArr = [
   {
-    id: 0,
-    name: 'Valeriy',
-    surname: 'Zhmishenko',
-    salary: 1000, 
-    workExperience: 10, 
-    isPrivileges: true, 
-    gender: 'male',
-  },
-  {
     id: 1,
     name: 'Денис',
     surname: 'Хрущ',
