@@ -60,17 +60,19 @@ class Emplyee {
   get fullInfo() {
     const outputArr = []
     for (let property in this) {
-      outputArr.push(`${property } - ${this[property ]}`)
+      outputArr.push(`${property} - ${this[property]}`)
     }
     return array.join(", ")
   }
   set fullInfo(inputValue) {
     for (let property in inputValue) {
-      if (this.hasOwnProperty(property )) {
+      if (this.hasOwnProperty(property)) {
         this[property] = inputValue[property]
       }
     }
   }
 }
-const emplyeeObj = new Emplyee (employeeArr[0]);
+const emplyeeObj = new Emplyee (employeeArr[0])
+console.log(emplyeeObj)
 emplyeeObj.fullInfo = {name: 'Вася', salary: 9000, email: 'ex@mail.ua'}
+console.log(emplyeeObj)
