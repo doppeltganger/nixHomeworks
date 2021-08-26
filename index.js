@@ -1,42 +1,37 @@
 // first task
-
 class Student {
-  constructor(enrollee) {
-    this.id = Student.id++
-    Object.assign(this, enrollee)
-		this.isSelfPayment = this.ratingPoint <= 800
+  constructor(data) {
+    Object.assign(this, {
+      ...data,
+      id: Student.id++,
+      isSelfPayment: true
+    })
+    Student.studentList.push(this)
+    Student.sortByPoints()
+    Student.putSelfPaymentStatus()
   }
 
   static id = 1
-  static studentsList = Student.getStudentsList(studentArr)
-  static freeStudentsList = Student.getFreeStudentsList(Student.studentsList)
 
-  static getStudentsList(inputArr) {
-    const outputArr = []
-    inputArr.map(item => outputArr.push(new Student(item)))
-    return outputArr
+  static studentList = []
+
+  static sortByPoints() {
+    this.studentList.sort((a, b) => (
+      b.ratingPoint - a.ratingPoint || b.schoolPoint - a.schoolPoint
+    ))
   }
 
-  static getFreeStudentsList(inputArr) {
-    const outputArr = []
-    
-    inputArr.map(item => {
-      if (!item.isSelfPayment) {
-        outputArr.push(item)
-        outputArr.sort((a, b) => {
-          if (a.ratingPoint < b.ratingPoint) return 1
-          if (a.ratingPoint > b.ratingPoint) return -1
-          return b.schoolPoint - a.schoolPoint
-        })
-        .splice(5)
-      } 
-    })
-    return outputArr
+  static putSelfPaymentStatus() {
+    for (let index in this.studentList) {
+      const student = this.studentList[index]
+      student.isSelfPayment = !(student.ratingPoint >= 800 && index < 5)
+    }
   }
 }
 
-console.log(Student.studentsList)
-console.log(Student.freeStudentsList)
+console.log(
+  studentArr.map(el => new Student(el))
+)
 
 //second task
 class CustomString {
