@@ -34,7 +34,7 @@ console.log(calculateTotalAmountOfReamPaper(500, 1200, 8))
 
 //fourth task
 const calculateNumberOfPorchAndNumberOfFloor = (roomsOnFloor, floors, roomNumber) => {
-  calculateNumberOfPorch = () => {
+  const calculateNumberOfPorch = () => {
     let numberOfPorch = roomNumber / (roomsOnFloor * floors)
     if (!(numberOfPorch % 1)) {
       return numberOfPorch
@@ -42,7 +42,7 @@ const calculateNumberOfPorchAndNumberOfFloor = (roomsOnFloor, floors, roomNumber
     return (numberOfPorch - numberOfPorch % 1) + 1
   } 
   
-  calculatenumberOfFloor = () => {
+  const calculatenumberOfFloor = () => {
     let numberOfFloor = (roomNumber - (calculateNumberOfPorch() - 1) * roomsOnFloor * floors) / roomsOnFloor
     if (!(numberOfFloor % 1)) {
       return numberOfFloor
