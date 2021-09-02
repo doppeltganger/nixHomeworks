@@ -1,7 +1,11 @@
 //first task
 const searchCandidatesByPhoneNumber = (inputArr, inputValue) => {
   const regexValue = /[\+\(\)\-\s]/g
-  return inputArr.filter(element => element.phone.replace(regexValue, '').includes(inputValue.replace(regexValue, '')))
+  return inputArr
+    .filter(element => element.phone
+      .replace(regexValue, '')
+      .includes(inputValue.replace(regexValue, ''))
+    )
 }
 
 console.log(searchCandidatesByPhoneNumber(candidateArr, '43')) 
@@ -24,14 +28,21 @@ const sortCandidatesArr = (inputArr, inputSortArg) => {
   const formattedBalance = inputValue => {
     return Number.parseInt(inputValue.replace('$', ''))
   }
-  
-  return [...inputArr].sort((a, b) => {
-    return (
-      (inputSortArg === 'ascendingOrder') ? formattedBalance(a.balance) - formattedBalance(b.balance) :
-      (inputSortArg === 'descendingOrder') ? formattedBalance(b.balance) - formattedBalance(a.balance) :
-      [...inputArr]
-    )
-  })
+
+  if (!inputSortArg) {
+    return inputArr
+  }
+
+  else {
+    return [...inputArr].sort((a, b) => {
+      if (inputSortArg === 'ascendingOrder')  {
+        return formattedBalance(a.balance) - formattedBalance(b.balance)
+      }
+      else if (inputSortArg === 'descendingOrder') {
+        return formattedBalance(b.balance) - formattedBalance(a.balance)
+      }
+    })
+  }
 }
 
 console.log(sortCandidatesArr(candidateArr, 'ascendingOrder'))
