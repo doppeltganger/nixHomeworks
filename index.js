@@ -14,27 +14,23 @@ Employee.prototype.getFullName = function() {
 employeeObj.getFullName()
 
 //third task
-const createEmployesFromArr = (inputArr) => {
-  const outputArr = []
-  inputArr.map(item => outputArr.push(new Employee(item)))
-  return outputArr
+const createEmployesFromArr = inputArr => {
+  return inputArr.map(item => new Employee(item))
 }
 
 const employeeConstructArr = createEmployesFromArr(employeeArr)
 console.log(employeeConstructArr)
 
 //fourth task 
-const getFullNamesFromArr = (inputArr) => {
-  const outputArr = []
-  inputArr.map(item => outputArr.push(item.getFullName()))
-  return outputArr
+const getFullNamesFromArr = inputArr => {
+  return inputArr.map(item => item.getFullName())
 }
 
 const fullNamesArr = getFullNamesFromArr(employeeConstructArr)
 console.log(fullNamesArr)
 
 //fifth task
-const getMiddleSalary = (inputArr) => {
+const getMiddleSalary = inputArr => {
   let outputValue = 0
   outputValue += ~~(inputArr.reduce((acc, value) => acc + value.salary, 0) / (inputArr.length))
   return outputValue
@@ -44,7 +40,7 @@ const middleSalary = getMiddleSalary(employeeConstructArr)
 console.log(middleSalary)
 
 //sixth task
-const getRandomEmployee = (inputaArr) => {
+const getRandomEmployee = inputaArr => {
   const outputValue = inputaArr[Math.floor(Math.random() * inputaArr.length)]
   return outputValue
 }
