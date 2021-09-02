@@ -3,10 +3,10 @@ const testArr = ['Vasya', 'Petya', 'Alexey']
 
 const removeUser = (inputArr, inputIndex) => {
   inputArr.splice(inputIndex, 1)
-  return console.log(inputArr)
+  return inputArr
 }
 
-removeUser(testArr, 1)
+console.log(removeUser(testArr, 1))
 
 //second task
 const testObj = { 
@@ -14,26 +14,19 @@ const testObj = {
   age: 1
 }
 
-const getAllKeys = (inputObj) => {
-  const outputArr = []
-  for (let key in inputObj) {
-    outputArr.push(key)
-  }
-  return console.log(outputArr)
+const getAllKeys = inputObj => {
+  return Object.keys(inputObj)
 }
+​
+console.log(getAllKeys(testObj))
 
-getAllKeys(testObj)
 
 //third task
-const getAllValues = (inputObj) => {
-  const outputArr = []
-  for (let value in inputObj) {
-    outputArr.push(inputObj[value])
-  }
-  return console.log(outputArr)
+const getAllValues = inputObj => {
+  return Object.values(inputObj)
 }
 
-getAllValues(testObj)
+console.log(getAllValues(testObj))
 
 //fourth task
 const resultArr = [
@@ -57,13 +50,12 @@ const testObj2 = {
   id: 4
 }
 
-const insertIntoArr = (inputObj, inputId, outputArr) => {
-	const inputIndex = outputArr.findIndex(element => element.id === inputId)
-  outputArr.splice(inputIndex, 0, inputObj)
-  return console.log(outputArr)
+const insertIntoArr = (inputObj, inputId, outputArr) => { 
+  outputArr.splice(outputArr.findIndex(element => element.id === inputId), 0, inputObj)
+  return outputArr
 }
 
-insertIntoArr(testObj1, 2, resultArr)
+console.log(insertIntoArr(testObj1, 2, resultArr))
 
 //fifth task
 class Candidate {
@@ -76,77 +68,77 @@ class Candidate {
   }
 }
 
-const candidate = new Candidate(candidateArr[7])
-console.log(candidate.getState())
+console.log(new Candidate(candidateArr[7]).getState())
 
 //sixth task
 const getCompanyNames = inputArr => {
-  const outputArr = []
-	inputArr.forEach(element => {
-    if (!outputArr.includes(element.company)) {
-			outputArr.push(element.company)
-		}
-  })
-	return console.log(outputArr)
+  return inputArr.map(element => {
+    if (!inputArr.includes(element.company)) {
+	    return element.company
+	  }
+  })	
 }
 
-getCompanyNames(candidateArr)
+console.log(getCompanyNames(candidateArr))
 
 //seventh task
 const getUsersByYear = (inputArr, inputYear) => {
-	const outputArr = []
-	inputArr.forEach(element => {
-		if (element.registered.split('-')[0] === String(inputYear)) outputArr.push(element._id)
-	})
-	return console.log(outputArr)
+  return inputArr
+    .filter(element => element.registered.split('-')[0] === String(inputYear)) 
+    .map(element => element._id)
 }
 
-getUsersByYear(candidateArr, 2016)
+console.log(getUsersByYear(candidateArr, 2016))
 
 //eighth task
 const getCandidatesByUnreadMsg = (inputArr, inputAmount) => {
-	const outputArr = []
-	inputArr.forEach(element => {
-		if (parseInt(element.greeting.match(/\d+/)) === inputAmount) outputArr.push(new Candidate(element))
-  })
-	return console.log(outputArr)
+  return inputArr
+    .filter(element => parseInt(element.greeting.match(/\d+/)) === inputAmount)
+    .map(element => new Candidate(element))
 }
 
-getCandidatesByUnreadMsg(candidateArr, 8)
+console.log(getCandidatesByUnreadMsg(candidateArr, 8))
 
 //ninth task
 const getCandidatesByGender = (inputArr, inputGenderValue) => {
-	const outputArr = []
-	inputArr.forEach(element => {
-		if (element.gender === String(inputGenderValue)) outputArr.push(new Candidate(element))
-  })
-	return console.log(outputArr)
+  return inputArr
+    .filter(element => element.gender === String(inputGenderValue))
+    .map(element => new Candidate(element))
 }
 
-getCandidatesByGender(candidateArr, 'male')
-getCandidatesByGender(candidateArr, 'female')
+console.log(getCandidatesByGender(candidateArr, 'male'))
+console.log(getCandidatesByGender(candidateArr, 'female'))
 
 //tenth task
 const testNumArr = [22, 15, 46, 78]
 
-Array.prototype.customReduce = function(callback) {
-  let outputValue  = 0                              
-  for (let i = 0; i < this.length; i++) {
-    callback(outputValue = outputValue + this[i])           
-  } 
-  return outputValue                             
-}
+Object.defineProperty(Array.prototype, 'customReduce', {
+	value: function (callback) {
+	  let outputValue  = 0
 
-let reduceResult = testNumArr.customReduce((acc, item) => acc + item)
-console.log(reduceResult)
+    for (let i = 0; i < this.length; i++) {
+      callback(outputValue = outputValue + this[i])           
+    } 
 
-Array.prototype.customJoin = function(separator) {
-  let outputValue  = ''
-  for (let i = 0; i < this.length; i++) {
-    outputValue += this[i]
-    i < this.length - 1 ? outputValue += separator : outputValue
-  }
-  return outputValue
-}
+    return outputValue                             
+	},
+	enumerable: false
+})
+
+console.log(testNumArr.customReduce((acc, item) => acc + item))
+
+Object.defineProperty(Array.prototype, 'customJoin', {
+  value: function(separator = ',') {
+    let outputStr  = ''
+
+    for (let i = 0; i < this.length; i++) {
+      outputStr += this[i]
+      i < this.length - 1 ? outputStr += separator : outputStr
+    }
+
+    return outputStr
+  },
+  enumerable: false
+})
 
 console.log(testNumArr.customJoin('*'))
