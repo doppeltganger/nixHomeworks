@@ -9,33 +9,32 @@ const citiesAndCountries = {
 	'Вена': 'Австрия',
 }
 
-const citiesAndCountriesList = []
-
-const getCitiesAndCountriesList = (obj, arr) => {
-  for (let property in obj) {
-    arr.push(`${property} - это ${arr[property]}`)
-  }
-  console.log(arr) 
+const getCitiesAndCountriesList = (inputObj) => {
+  return Object.keys(inputObj).map(key => `${key} это ${inputObj[key]}`)
 }
 
-getCitiesAndCountriesList(citiesAndCountries, citiesAndCountriesList)
+console.log(getCitiesAndCountriesList(citiesAndCountries))
 
 //second task
 const getArray = amount => {
-  if (typeof amount === 'number' && amount % 3 == 0) {
-    const resultArray = []
-    for (let i = 0; i < amount / 3; i++) {
-      resultArray[i] = []
-      for (let j = 0; j < 3; j++) {
-        resultArray[i][j] = j + i * 3 + 1
-      }
-    }
-  console.log(resultArray)
+  if (amount < 3 || !!(amount % 3)) {
+    console.error("Invalid amount")
+	return
   }
-  else console.error('Invalid amount')
+
+const resultArr = []
+let nestedArr = []
+  for (let i = 1; i <= amount; i++) {
+    nestedArr[nestedArr.length] = i
+	  if (!(i % 3)) {
+	    resultArr[resultArr.length] = nestedArr
+	    nestedArr = []
+	  }
+  }
+  return resultArr
 }
 
-getArray(9)
+console.log(getArray(9))
 
 //third task
 const namesOfDays = {
@@ -43,23 +42,29 @@ const namesOfDays = {
   en: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
 }
 
-const getNameOfDay = (obj, lang, num) => {
-  for (let property in obj) {
-    if (property == lang) {
-      for (let i = 0; i <= obj[property].length; ++i) {
-        if (i == num) console.log(obj[property][i - 1])
-      }
-    }
-  }
+getNameOfDay = (inputObj, inputLang, inputDay) => {
+    return inputObj[inputLang][inputDay - 1]
 }
 
-getNameOfDay(namesOfDays, 'en', 7)
+console.log(getNameOfDay(namesOfDays, 'en', 7))
+console.log(getNameOfDay(namesOfDays, 'ru', 7))
 
 //fourth task
-const calculateMinNumbers = arr => {
-  let result = arr.sort((a,b) => a - b).slice(0, 2).reduce((a, b) => a + b) 
-  console.log(result)
+const calculateMinNumbers = inputArr => {
+  return inputArr
+    .sort((a, b) => a - b)
+    .map(item => {
+      if (inputArr.length < 4 || inputArr[0] === inputArr[1] || item < 0 || item % 1) {
+        console.error('Invalid arr')
+        return
+      }
+      return item 
+    }) 
+    .slice(0, 2)
+    .reduce((a, b) => a + b)
 }
+
+console.log(calculateMinNumbers([2, 19, 5, 3]))
 
 calculateMinNumbers([19, 5, 42, 2, 77])
 
