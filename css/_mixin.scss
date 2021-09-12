@@ -1,0 +1,16 @@
+@mixin button($btn-padding, $btn-radius) {
+    padding: $btn-padding;
+    color: $white;
+    background: $cobalt;
+    border-radius:$btn-radius;
+    cursor: pointer;
+    transition: all $animation-speed;
+
+    &:active {
+        background: $gainsboro;
+    }
+
+    &:hover {
+        background: $sapphire;
+    }
+}

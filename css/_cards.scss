@@ -1,0 +1,135 @@
+.cards {
+    display: flex;
+    justify-content: space-between;
+
+    &__filter {
+        flex: 0 0 calc(100% / 3);
+    }
+
+    &__body {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        flex: 0 0 calc(100% / 3 * 2);     
+    }
+
+    &__item {
+        padding: 25px 20px;
+        flex: 0 0 100%;
+
+        @media (min-width: 768px) {
+            flex: 0 0 calc(100% / 2);
+        }
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0 0;
+    box-shadow: 0px 0px 25px rgba($black, .15);
+    border-radius: 10px;
+    overflow: hidden;
+
+    &__like {
+        align-self: flex-end;
+        margin: 0 20px 0 0;
+        font-size: 24px;
+        font-family: $ff-icomoon;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+
+        &_active {
+            color: $flamingo;
+        }
+    }
+
+    &__visual {
+        margin: 0 0 25px;
+        min-height: 200px;
+
+        & img {
+            width: 160px
+        }
+    }
+
+    &__title {
+        margin: 0 0 5px;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 28px;
+    }
+
+    &__stock, &__price {
+        position: relative;
+        margin: 0 0 5px;
+        line-height: 16px;
+        color: $dim-grey;
+    }
+
+    &__stock-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-375%, -50%);
+        font-size: 20px;
+        font-family: $ff-icomoon;
+        color: $pastel-green;
+
+        &_checked {
+            color: $pastel-green;
+        }
+
+        &_empty {
+            color: $flamingo;
+        }
+    }
+
+    &__stock-amount, &__price-amount {
+        font-weight: 700;
+    }
+
+    &__button {
+        @include button(15px 25px, 5px);
+        margin: 0 0 20px;
+        font-size: 20px;
+        border: none;
+    }
+
+    &__footer {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+        padding: 20px 15px;
+        background: $pattens-blue;
+    }
+
+    &__reviews {
+        position: relative;
+        padding: 0 0 0 30px;
+        text-align: left;
+        line-height: 20px;
+        color: $port-gore;
+
+        &:before {
+            position: absolute;
+            content: "\e904";
+            top: 0;
+            left: 0;
+            transform: translate(0, 15%);
+            font-size: 20px;
+            font-family: $ff-icomoon;
+            color: $flamingo;
+        }
+    }
+
+    &__orders {
+        line-height: 20px;
+        color: $port-gore;
+    }
+
+    &__reviews-amount, &__orders-amount {
+        font-weight: 700;
+    }
+}
