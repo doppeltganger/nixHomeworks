@@ -2,8 +2,8 @@
 const cardsBody = document.querySelector('.cards__body')
 const cardsItems = items.map(item => {
   const inStock  = item.orderInfo.inStock
-  const stockIcon = inStock ? '&#xe901;' : '&#xea0d;'
-  const stockIconColor = inStock ? 'card__stock-icon_checked' : 'card__stock-icon_empty'
+  const stockIcon = !!inStock ? '&#xe901;' : '&#xea0d;'
+  const stockIconColor = !!inStock ? 'card__stock-icon_checked' : 'card__stock-icon_empty'
   cardsBody.innerHTML += `
     <div class="cards__item">
         <div class="card">

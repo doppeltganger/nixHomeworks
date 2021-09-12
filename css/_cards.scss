@@ -39,11 +39,15 @@
         background: transparent;
         border: none;
         cursor: pointer;
+
+        &_active {
+            color: $flamingo;
+        }
     }
 
     &__visual {
         margin: 0 0 25px;
-        min-height: 200px;
+        min-height: 220px;
 
         & img {
             width: 160px
