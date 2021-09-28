@@ -1,0 +1,114 @@
+.calendar {
+    display: flex;
+    justify-content: space-between;
+
+    &__body {
+        flex: 0 0 calc(100% / 3 * 2);
+    }
+
+    &__events-desc {
+        position: relative;
+        padding: 10px;
+        max-width: 200px;
+        min-width: 200px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &:hover {
+            .calendar__delete-button:before {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+    &__delete-button {
+        &:before {
+            content: "\2716";
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translate(-15%, 1%);
+            font-size: 18px;
+            color: $regal-blue;
+            cursor: pointer;
+            visibility: hidden;
+            opacity: 0;
+        }
+    }
+
+    &__form {
+        flex: 0 0 calc(100% / 3);
+    }
+}  
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba($black, .1);
+    box-shadow: $base-shadow;
+
+    &__title {
+      font-size: 18px;
+      font-weight: 400;
+    }
+    
+    &__label {
+        display: block;
+        margin: 30px 0 0;
+        font-weight: 400;
+    }
+    
+    &__input {
+        margin: 5px 0 0;
+        padding: 10px;
+        width: 100%;
+        border: 1px solid rgba($black, .1);
+        border-radius: 5px;
+        outline: none;
+    
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            appearance: none;
+        }
+    }
+
+    &__input:hover,
+    &__input:focus {
+        box-shadow: $base-shadow;
+    }
+
+    &__input,
+    & input[type='color'] {
+        display: block;
+        margin: 10px 0 0;
+    }
+
+    & input[type='color'] {
+        appearance: none;
+        width: 40px;
+        height: 40px;
+        border: none;
+
+        &:hover {
+            box-shadow: $base-shadow;
+        }
+
+        &::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        &::-webkit-color-swatch {
+            border: none;
+        }
+    }
+
+    &__button {
+        margin: 30px 0 0;
+    }
+}

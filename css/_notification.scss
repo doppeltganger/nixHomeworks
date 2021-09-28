@@ -1,0 +1,28 @@
+.calendar__notification {
+    position: fixed;
+    top: 0;
+    right: 0;
+    transform: translate(-4%, 25%);
+    padding: 10px;
+    width: 400px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: $regal-blue;
+    color: $white;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &__title {
+        margin: 0 0 10px;
+        font-size: 20px;
+    }
+
+    &-hidden {
+        visibility: hidden;
+    }
+
+    &-visible {
+        visibility: visible;
+    }
+}
+
