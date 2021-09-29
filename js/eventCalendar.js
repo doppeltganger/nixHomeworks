@@ -206,14 +206,12 @@ class Calendar {
     updateWindowDuration.value = currentEvent.duration
 
     const updateWindowColor = document.createElement('input')
-    updateWindowColor.setAttribute('style', 'display: block; margin: 10px 0 0')
     updateWindowColor.type = 'color'
     updateWindowColor.value = currentEvent.color
 
     const updateWindowButton = document.createElement('button')
     updateWindowButton.textContent = 'Save changes'
     updateWindowButton.classList.add('button')
-    updateWindowButton.setAttribute('style', 'width: 100%; margin: 10px 0 0')
 
     updateWindow.append(updateWindowTitle, updateWindowTime, updateWindowDuration, updateWindowColor, updateWindowButton)
     target.append(updateWindow)
