@@ -6,7 +6,7 @@ class Calendar {
   }
 
   static id = 1
-  static color = '#6e9ecf'
+  static color = '#c66b3d'
   static eventsList = eventsArr.map(element => {
     element['id'] = Calendar.id++
     element['color'] = Calendar.color
@@ -25,8 +25,8 @@ class Calendar {
     return (Number(hours) - 8) * 60 + Number(minutes)
   }
 
-  static convertTimePoint(timePoint) {
-    return Number(timePoint.childNodes[1].textContent)
+  static convertTimeValue(inputTimeValue) {
+    return Number(inputTimeValue.childNodes[1].textContent)
   }
 
   static setCurrentDate() {
@@ -42,12 +42,12 @@ class Calendar {
     headerTitle.append(currentDateValue)
   }
 
-  static hexToRGB(hex, alpha) {
-    const r = parseInt(hex.slice(1, 3), 16)
-    const g = parseInt(hex.slice(3, 5), 16)
-    const b = parseInt(hex.slice(5, 7), 16)
+  static convertColorToRGB(inputHex, inputAlphaCanal) {
+    const redCanal = parseInt(inputHex.slice(1, 3), 16)
+    const greenCanal = parseInt(inputHex.slice(3, 5), 16)
+    const blueCanal = parseInt(inputHex.slice(5, 7), 16)
 
-    return alpha ? `rgba(${r}, ${g}, ${b}, ${alpha})` : `rgba(${r}, ${g}, ${b})`
+    return inputAlphaCanal ? `rgba(${redCanal}, ${greenCanal}, ${blueCanal}, ${inputAlphaCanal})` : `rgba(${redCanal}, ${greenCanal}, ${blueCanal})`
   }
 
   static createTimeTable() {
@@ -57,6 +57,7 @@ class Calendar {
 
     for (let i = 0; i <= 540; i++) {
       const timeRow = document.createElement('tr')
+      timeRow.setAttribute('style', 'min-width: 800px; max-width: 800px;')
       const timeData = document.createElement('td')
       const timeDataValue = document.createElement('span')
 
@@ -83,17 +84,17 @@ class Calendar {
   }
 
   static renderAllEvents() {
-    const timePoints = Array.from(document.querySelector('#events-time__table').childNodes)
+    const timeValue = Array.from(document.querySelector('#events-time__table').childNodes)
 
     Calendar.removeEvents()
 
     if (Calendar.eventsList.length) {
       Calendar.eventsList.map(element => {
-        const timePointIndex = timePoints.findIndex(item => Calendar.convertTimePoint(item) === element.start)
+        const timeValueIndex = timeValue.findIndex(item => Calendar.convertTimeValue(item) === element.start)
 
-        if (timePointIndex === element.start) {
-          if (timePointIndex % 30) {
-            const eventTime = timePoints[timePointIndex].childNodes[0]
+        if (timeValueIndex === element.start) {
+          if (timeValueIndex % 30) {
+            const eventTime = timeValue[timeValueIndex].childNodes[0]
             eventTime.classList.remove('display-none')
             eventTime.classList.add('visibility-hidden')
           }
@@ -101,7 +102,7 @@ class Calendar {
           const eventData = document.createElement('td')
           eventData.textContent = element.title
           eventData.classList.add('calendar__events-desc')
-          eventData.setAttribute('style', `background: ${Calendar.hexToRGB(element.color, .2)}; border-left: 3px solid ${element.color}`)
+          eventData.setAttribute('style', `background: ${Calendar.convertColorToRGB(element.color, .2)}; border-left: 3px solid ${element.color}`)
 
           const eventDataValue = document.createElement('span')
           eventDataValue.classList.add('calendar__delete-button')
@@ -109,11 +110,11 @@ class Calendar {
 
           eventData.setAttribute('rowspan', element.duration)
           eventData.append(eventDataValue)
-          timePoints[timePointIndex].append(eventData)
+          timeValue[timeValueIndex].append(eventData)
 
           Calendar.setNotification(element.start, element.title, element.duration)
         } else {
-          throw new Error('Events should had been started at 8:00 and finished by 17:00')
+          console.error('Events should had been started at 8:00 and finished by 17:00')
         }
       })
     }

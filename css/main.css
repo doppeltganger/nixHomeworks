@@ -205,22 +205,15 @@ template {
 }
 
 body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  position: relative;
   padding: 50px;
   min-width: 320px;
   min-height: 100vh;
   font-size: 14px;
   font-weight: 300;
   font-family: "opensans";
+  background: #201e20;
+  color: #ddc3a5;
   -webkit-transition: 0.5s ease;
   transition: 0.5s ease;
 }
@@ -236,14 +229,7 @@ body {
 }
 
 .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   max-width: 2100px;
-  margin: 0 auto;
   padding: 0 15px;
 }
 
@@ -251,14 +237,40 @@ body {
   width: 100%;
   padding: 8px;
   border-radius: 5px;
-  background-color: #1e3d59;
-  color: #fff;
+  background-color: #9e5631;
+  color: #ddc3a5;
   border: none;
   cursor: pointer;
 }
 
 .button:hover {
-  background: rgba(30, 61, 89, 0.95);
+  background: rgba(158, 86, 49, 0.95);
+}
+
+input[type='color'] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+
+input[type='color']:hover {
+  -webkit-box-shadow: 2px 2px 2px rgba(221, 195, 165, 0.3);
+          box-shadow: 2px 2px 2px rgba(221, 195, 165, 0.3);
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type='color']::-webkit-color-swatch {
+  border: none;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: transparent;
 }
 
 .text-center {
@@ -282,22 +294,7 @@ body {
 }
 
 table {
-  margin: 20px auto;
-}
-
-.calendar {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.calendar__body {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 calc(100% / 3 * 2);
-          flex: 0 0 calc(100% / 3 * 2);
+  margin: 20px;
 }
 
 .calendar__events-desc {
@@ -323,16 +320,19 @@ table {
   -webkit-transform: translate(-15%, 1%);
           transform: translate(-15%, 1%);
   font-size: 18px;
-  color: #1e3d59;
+  color: #9e5631;
   cursor: pointer;
   visibility: hidden;
   opacity: 0;
 }
 
 .calendar__form {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 calc(100% / 3);
-          flex: 0 0 calc(100% / 3);
+  position: fixed;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translate(-5%, -33%);
+          transform: translate(-5%, -33%);
+  width: 400px;
 }
 
 .form {
@@ -347,9 +347,9 @@ table {
   margin: 20px auto;
   padding: 15px;
   border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(221, 195, 165, 0.3);
+  -webkit-box-shadow: 2px 2px 2px rgba(221, 195, 165, 0.3);
+          box-shadow: 2px 2px 2px rgba(221, 195, 165, 0.3);
 }
 
 .form__title {
@@ -367,7 +367,9 @@ table {
   margin: 5px 0 0;
   padding: 10px;
   width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: inherit;
+  color: #666;
+  border: 1px solid rgba(221, 195, 165, 0.3);
   border-radius: 5px;
   outline: none;
 }
@@ -378,36 +380,14 @@ table {
 }
 
 .form__input:hover, .form__input:focus {
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 2px 2px 2px rgba(221, 195, 165, 0.3);
+          box-shadow: 2px 2px 2px rgba(221, 195, 165, 0.3);
 }
 
 .form__input,
 .form input[type='color'] {
   display: block;
   margin: 10px 0 0;
-}
-
-.form input[type='color'] {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  width: 40px;
-  height: 40px;
-  border: none;
-}
-
-.form input[type='color']:hover {
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.form input[type='color']::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-
-.form input[type='color']::-webkit-color-swatch {
-  border: none;
 }
 
 .form__button {
@@ -424,8 +404,8 @@ table {
   width: 400px;
   white-space: nowrap;
   text-overflow: ellipsis;
-  background: #1e3d59;
-  color: #fff;
+  background: #9e5631;
+  color: #ddc3a5;
   border-radius: 5px;
   overflow: hidden;
 }

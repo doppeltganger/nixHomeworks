@@ -1,13 +1,13 @@
 body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    position: relative;
     padding: 50px;
     min-width: 320px;
     min-height: 100vh;
     font-size: $base-fs;
     font-weight: $base-fw;
     font-family: $base-ff;
+    background: $mardi-gras;
+    color: $bone;
     transition: $base-transition;
 }
 
@@ -24,10 +24,7 @@ body {
 }
 
 .container {
-    display: flex;
-	justify-content: center;
     max-width: 2100px;
-    margin: 0 auto;
     padding: 0 15px;
 }
 
@@ -35,13 +32,38 @@ body {
     width: 100%;
     padding: 8px;
     border-radius: 5px;
-    background-color: $regal-blue;
-    color: $white;
+    background-color: $zest;
+    color: $bone;
     border: none;
     cursor: pointer;
 
     &:hover {
-        background: rgba($regal-blue, .95);
+        background: rgba($zest, .95);
+    }
+}
+
+input[type='color'] {
+    appearance: none;
+    width: 40px;
+    height: 40px;
+    border: none;
+
+    &:hover {
+        box-shadow: $base-shadow;
+    }
+
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+        border: none;
+    }
+}
+
+input[type="time"] {
+    &::-webkit-calendar-picker-indicator {
+        background: transparent;
     }
 }
 
@@ -66,5 +88,5 @@ body {
 }
 
 table {
-    margin: 20px auto;
+    margin: 20px;
 }
